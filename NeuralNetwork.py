@@ -15,11 +15,13 @@ def create_data(points, classes):
     return X,y
 
 X, y = create_data(100,3)
+
+'''
 plt.scatter(X[:, 0], X[:, 1],)
 plt.show()
-
 plt.scatter(X[:, 0], X[:,1], c=y, cmap="brg")
 plt.show()
+'''
 
 class Layer_Dense:
     def __init__(self, n_inputs, n_neurons):
@@ -34,8 +36,9 @@ class Activation_ReLU:
         
 
 layer1 = Layer_Dense(2, 5)
-layer2 = Layer_Dense(5, 2)
+activation1 = Activation_ReLU()
 
 layer1.forward(X)
-layer2.forward(layer1.output)
-print(layer2.output)
+activation1.foreward(layer1.output)
+
+print(activation1.output)
