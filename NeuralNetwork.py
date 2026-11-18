@@ -14,14 +14,6 @@ def create_data(points, classes):
         y[ix] = class_number
     return X,y
 
-X, y = create_data(100,3)
-
-'''
-plt.scatter(X[:, 0], X[:, 1],)
-plt.show()
-plt.scatter(X[:, 0], X[:,1], c=y, cmap="brg")
-plt.show()
-'''
 
 class Layer_Dense:
     def __init__(self, n_inputs, n_neurons):
@@ -37,13 +29,23 @@ class Activation_ReLU:
 class Activation_Softmax:
     def foreward(self, inputs):
         exp_values = np.exp(inputs - np.max(inputs, axis=1, keepdims=True))
-        norm_values = exp_values / np.sum(exp_values, axis=1, keepdims=True)
+        probabilities = exp_values / np.sum(exp_values, axis=1, keepdims=True)
+        self.output = probabilities
         
 
-layer1 = Layer_Dense(2, 5)
+X, y = create_data(points=100,classes=3)
+dense1 = Layer_Dense(2,3)
 activation1 = Activation_ReLU()
 
-layer1.forward(X)
-activation1.foreward(layer1.output)
+dense2 = Layer_Dense(3,3)
+activation2 = Activation_Softmax()
 
-print(activation1.output)
+
+dense1.forward(X)
+activation1.foreward(dense1.output)
+
+dense2.forward(activation1.output)
+activation2.foreward(dense2.output)
+
+
+print(activation2.output[:5])
