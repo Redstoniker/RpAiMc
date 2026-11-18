@@ -34,6 +34,11 @@ class Activation_ReLU:
     def foreward(self, inputs):
         self.output = np.maximum(0, inputs)
         
+class Activation_Softmax:
+    def foreward(self, inputs):
+        exp_values = np.exp(inputs - np.max(inputs, axis=1, keepdims=True))
+        norm_values = exp_values / np.sum(exp_values, axis=1, keepdims=True)
+        
 
 layer1 = Layer_Dense(2, 5)
 activation1 = Activation_ReLU()
