@@ -10,3 +10,4 @@ norm_values = exp_values / np.sum(exp_values, axis=1, keepdims = True)
 print(norm_values)
 
 
+#substraction of max value missing
