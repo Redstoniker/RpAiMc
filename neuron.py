@@ -12,6 +12,9 @@ inputs = [1,2,3,0.5]
 weights = [0.2, 0.8, -0.5, 1.0]
 bias = 2
 
+output = np.dot(weights * inputs) + bias #first weights than inputs (because changes lateron)
+print(output)
+
 '''
 layer_outputs = []
 for neuron_weights, neuron_bias in zip(weights, biases) :
